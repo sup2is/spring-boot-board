@@ -3,6 +3,7 @@
 <meta charset="utf-8">
 <head th:replace="/fragments/layout-head :: layout-head" ></head>
 <header th:replace="/fragments/layout-header :: layout-header" ></header>
-<div layout:fragment="layout-content"></div>
+<nav th:replace="/fragments/layout-nav :: layout-nav" ></nav>
+<div layout:fragment="layout-content" class="container" style="height: 800px"></div>
 <footer th:replace="/fragments/layout-footer :: layout-footer"></footer>
 </html>
