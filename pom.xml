@@ -9,7 +9,7 @@
 		<version>2.2.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>me.sup2is.</groupId>
+	<groupId>me.sup2is.board</groupId>
 	<artifactId>springboot-board</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-demo4-1</name>
@@ -64,11 +64,16 @@
 			<artifactId>jquery</artifactId>
 			<version>3.4.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>4.3.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 	</dependencies>
 
