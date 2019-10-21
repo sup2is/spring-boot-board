@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="./fragments/layout-main">
+<meta charset="utf-8">
+
+<div layout:fragment="layout-content">
+	<div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="inputGroup-sizing-default">Username</span>
+			</div>
+			<input type="text" disabled="disabled" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+			</div>
+			<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+		</div>
+
+		<div class="form-group">
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="20"></textarea>
+		</div>
+	</div>
+	<div class="p-1 float-right mt-3">
+		<a th:href="@{/board/write}" role="button" class="btn btn-secondary">Submit</a>
+	</div>
+</div>
+</html>
