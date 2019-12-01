@@ -1,13 +1,14 @@
 package me.sup2is.board.model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-
-import lombok.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @ToString
@@ -35,4 +36,14 @@ public class Board {
 
 	private LocalDateTime createdAt;
 	private LocalDateTime modifiedAt;
+
+	public static Board createBoard(Member member, String title, String contents) {
+		Board board = new Board();
+		board.member = member;
+		board.title = title;
+		board.contents = contents;
+		board.createdAt = LocalDateTime.now();
+		board.modifiedAt = LocalDateTime.now();
+		return board;
+	}
 }
