@@ -46,4 +46,10 @@ public class Board {
 		board.modifiedAt = LocalDateTime.now();
 		return board;
 	}
+
+	public void updateBoard(String contents, String title) {
+		this.contents = contents;
+		this.title = title;
+	}
+
 }

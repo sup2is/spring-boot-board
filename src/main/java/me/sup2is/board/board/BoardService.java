@@ -20,4 +20,13 @@ public class BoardService {
 		return boardRepository.save(board);
 	}
 
+	public Board findBoardById(Long boardId) {
+		return boardRepository.findOne(boardId);
+	}
+
+	public void updateBoard(Board board,BoardForm boardForm) {
+		Board findBoard = findBoardById(board.getId());
+		findBoard.updateBoard(boardForm.getContents(), boardForm.getTitle());
+	}
+
 }

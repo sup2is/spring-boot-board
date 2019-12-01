@@ -22,9 +22,6 @@ public class BoardServiceTests {
 
 	@Autowired
 	private BoardService boardService;
-	
-	@Autowired
-	private BoardRepository boardRepository;
 
 	@Autowired
 	private MemberRepository memberRepository;
@@ -37,7 +34,7 @@ public class BoardServiceTests {
 	public void 게시글저장() {
 
 		//given
-		Member member = Member.createMember("sup2is", "sup2is", "dev.sup2is@gmail.com", "읭?");
+		Member member = Member.createMember("sup2is", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
 		memberRepository.save(member);
 		Board board = Board.createBoard(member,"글 저장입니다" , "글 저장입니다@@@");
 
@@ -45,5 +42,28 @@ public class BoardServiceTests {
 
 		//then
 		assertEquals(insertedId, board.getId());
+	}
+
+	@Test
+	public void 게시글수정() {
+		//given
+		Member member = Member.createMember("sup2is", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+		memberRepository.save(member);
+		Board board = Board.createBoard(member,"글 저장입니다" , "글 저장입니다@@@");
+		boardService.save(board);
+
+		BoardForm boardForm = new BoardForm();
+		boardForm.setContents("수정된 글입니다@@@@");
+		boardForm.setTitle("수정된 글입니다");
+
+		//when
+		Board findBoard = boardService.findBoardById(board.getId());
+		boardService.updateBoard(board, boardForm);
+
+		//then
+		Board updateBoard = boardService.findBoardById(board.getId());
+		assertEquals(boardForm.getContents(), updateBoard.getContents());
+		assertEquals(boardForm.getTitle(), updateBoard.getTitle());
+
 	}
 }
