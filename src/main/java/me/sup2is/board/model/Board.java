@@ -1,42 +1,38 @@
 package me.sup2is.board.model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Builder
 @Getter
-@Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Board {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long bno;
-	
-	@Column(length = 500, nullable = false)
+	@Column(name = "board_id")
+	private long id;
+
 	private String title;
-	
-	@Column(name = "user_id", nullable = false)
-	private String userId;
-	
-	@Column(columnDefinition = "TEXT", nullable = false)
+
+	@ManyToOne
+	@JoinColumn(name = "member_id")
+	private Member member;
+
+	@Lob
 	private String contents;
-	
-	@Column(columnDefinition = "DATETIME")
-	private Date reg_at;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "reply_id")
+	private List<Reply> replyList = new ArrayList<>();
+
+	private LocalDateTime createdAt;
+	private LocalDateTime modifiedAt;
 }
