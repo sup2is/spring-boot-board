@@ -26,4 +26,7 @@ public class MemberRepository {
         return em.createQuery("select m from Member m").getResultList();
     }
 
+    public void remove(Member member) {
+        em.remove(member);
+    }
 }

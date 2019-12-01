@@ -34,4 +34,9 @@ public class MemberService {
                 memberForm.getEmail(),
                 memberForm.getZipcode());
     }
+
+    public void deleteMember(Member member) {
+        memberRepository.remove(member);
+    }
+
 }

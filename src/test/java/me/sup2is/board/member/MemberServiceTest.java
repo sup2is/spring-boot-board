@@ -72,4 +72,18 @@ public class MemberServiceTest {
         assertEquals(updateMember.getEmail() , memberForm.getEmail());
         assertEquals(updateMember.getZipcode() , memberForm.getZipcode());
     }
+
+    @Test
+    public void 유저삭제() throws Exception {
+        //given
+        Member member = Member.createMember("user1", "password", "choi", "sup2is@gmail.com", "seoul");
+        memberService.save(member);
+
+        //when
+        memberService.deleteMember(member);
+
+        //then
+        assertEquals(null, memberService.findMemberById(member.getId()));
+    }
+
 }
