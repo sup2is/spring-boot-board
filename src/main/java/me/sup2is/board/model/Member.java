@@ -21,6 +21,8 @@ public class Member {
 
     private String userId;
 
+    private String passwd;
+
     private String username;
 
     private String email;
@@ -35,9 +37,10 @@ public class Member {
     @JoinColumn(name = "member_id")
     private List<Board> boardList = new ArrayList<>();
 
-    public static Member createMember(String userId, String username, String email, String zipcode) {
+    public static Member createMember(String userId, String passwd, String username, String email, String zipcode) {
         Member member = new Member();
         member.userId = userId;
+        member.passwd = passwd;
         member.email = email;
         member.username = username;
         member.zipcode = zipcode;
@@ -46,4 +49,10 @@ public class Member {
         return member;
     }
 
+    public void updateMember(String passwd, String username, String email, String zipcode) {
+        this.passwd = passwd;
+        this.username = username;
+        this.email = email;
+        this.zipcode = zipcode;
+    }
 }

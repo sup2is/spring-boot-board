@@ -18,8 +18,20 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+    public Member findMemberById(Long memberId) {
+        return memberRepository.findOne(memberId);
+    }
+
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
+    public void updateMember(Member member, MemberForm memberForm) {
+        Member findMember = findMemberById(member.getId());
+
+        findMember.updateMember(memberForm.getPasswd(),
+                memberForm.getUsername(),
+                memberForm.getEmail(),
+                memberForm.getZipcode());
+    }
 }
