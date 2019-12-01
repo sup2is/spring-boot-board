@@ -1,9 +1,21 @@
 package me.sup2is.board.board;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import me.sup2is.board.model.Board;
+import org.springframework.stereotype.Repository;
 
-public interface BoardRepository extends JpaRepository<Board, Long>{
-	
+import javax.persistence.EntityManager;
+
+@Repository
+@RequiredArgsConstructor
+public class BoardRepository{
+
+    final EntityManager em;
+
+    public Long save(Board board) {
+        em.persist(board);
+        return board.getId();
+    }
 }

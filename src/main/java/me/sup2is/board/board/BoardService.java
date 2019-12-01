@@ -1,12 +1,23 @@
 package me.sup2is.board.board;
 
+import lombok.RequiredArgsConstructor;
+import me.sup2is.board.member.MemberRepository;
+import me.sup2is.board.model.Member;
 import org.springframework.stereotype.Service;
 
 import me.sup2is.board.model.Board;
 
+import javax.transaction.Transactional;
+
 @Service
-public interface BoardService {
-	
-	public void write(Board board);
-	
+@RequiredArgsConstructor
+@Transactional
+public class BoardService {
+
+	final private BoardRepository boardRepository;
+
+	public Long save(Board board) {
+		return boardRepository.save(board);
+	}
+
 }
