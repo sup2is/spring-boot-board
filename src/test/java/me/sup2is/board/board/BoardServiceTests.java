@@ -108,6 +108,32 @@ public class BoardServiceTests {
 		assertEquals(3, allByMemberId.size());
 	}
 
+	@Test
+	public void 전체게시글불러오기() throws Exception {
+	    //given
+		Member member = Member.createMember("sup2is", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+		memberRepository.save(member);
+		Member another = Member.createMember("another", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+		memberRepository.save(another);
+		Board board1 = Board.createBoard(member,"글 저장입니다1" , "글 저장입니다@@@");
+		boardService.save(board1);
+		Board board2 = Board.createBoard(member,"글 저장입니다2" , "글 저장입니다@@@");
+		boardService.save(board2);
+		Board board3 = Board.createBoard(member,"글 저장입니다3" , "글 저장입니다@@@");
+		boardService.save(board3);
+		Board board4 = Board.createBoard(another,"글 저장입니다4" , "글 저장입니다@@@");
+		boardService.save(board4);
+		Board board5 = Board.createBoard(another,"글 저장입니다5" , "글 저장입니다@@@");
+		boardService.save(board5);
+
+	    //when
+		List<Board> all = boardService.findAll();
+
+		//then
+		assertEquals(5, all.size());
+	}
+
+
 
 
 }

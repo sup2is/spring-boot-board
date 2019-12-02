@@ -33,4 +33,9 @@ public class BoardRepository{
         return query.setParameter("member", member)
                 .getResultList();
     }
+
+    public List<Board> findAll() {
+        return em.createQuery("select b from Board b")
+                .getResultList();
+    }
 }

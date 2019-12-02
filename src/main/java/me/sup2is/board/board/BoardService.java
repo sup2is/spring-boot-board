@@ -36,4 +36,8 @@ public class BoardService {
 	public List<Board> findAllByMemberId(Long memberId) {
 		return boardRepository.findAllByMemberId(memberService.findMemberById(memberId));
 	}
+
+	public List<Board> findAll() {
+		return boardRepository.findAll();
+	}
 }
