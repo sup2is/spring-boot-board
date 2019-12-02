@@ -26,8 +26,8 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public void updateMember(Member member, MemberForm memberForm) {
-        Member findMember = findMemberById(member.getId());
+    public void updateMember(Long memberId, MemberForm memberForm) {
+        Member findMember = findMemberById(memberId);
 
         findMember.updateMember(memberForm.getPasswd(),
                 memberForm.getUsername(),

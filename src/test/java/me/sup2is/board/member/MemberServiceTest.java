@@ -62,8 +62,7 @@ public class MemberServiceTest {
         memberForm.setZipcode("변경된 집코드");
 
         //when
-        Member findMember = memberService.findMemberById(member.getId());
-        memberService.updateMember(findMember, memberForm);
+        memberService.updateMember(member.getId(), memberForm);
 
         //then
         Member updateMember = memberService.findMemberById(member.getId());
