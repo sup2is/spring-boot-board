@@ -65,4 +65,20 @@ public class BoardServiceTests {
 		assertEquals(boardForm.getTitle(), updateBoard.getTitle());
 
 	}
+
+	@Test
+	public void 게시글삭제() {
+		//given
+		Member member = Member.createMember("sup2is", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+		memberRepository.save(member);
+		Board board = Board.createBoard(member,"글 저장입니다" , "글 저장입니다@@@");
+		boardService.save(board);
+
+		//when
+		boardService.deleteBoard(board.getId());
+
+		//then
+		assertEquals(null, boardService.findBoardById(board.getId()));
+
+	}
 }

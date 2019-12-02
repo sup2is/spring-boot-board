@@ -29,4 +29,7 @@ public class BoardService {
 		findBoard.updateBoard(boardForm.getContents(), boardForm.getTitle());
 	}
 
+	public void deleteBoard(Long boardId) {
+		boardRepository.remove(findBoardById(boardId));
+	}
 }

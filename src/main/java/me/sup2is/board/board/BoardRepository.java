@@ -23,4 +23,7 @@ public class BoardRepository{
         return em.find(Board.class, boardId);
     }
 
+    public void remove(Board board) {
+        em.remove(board);
+    }
 }
