@@ -24,8 +24,8 @@ public class BoardService {
 		return boardRepository.findOne(boardId);
 	}
 
-	public void updateBoard(Board board,BoardForm boardForm) {
-		Board findBoard = findBoardById(board.getId());
+	public void updateBoard(Long boardId, BoardForm boardForm) {
+		Board findBoard = findBoardById(boardId);
 		findBoard.updateBoard(boardForm.getContents(), boardForm.getTitle());
 	}
 

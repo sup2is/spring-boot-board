@@ -57,8 +57,7 @@ public class BoardServiceTests {
 		boardForm.setTitle("수정된 글입니다");
 
 		//when
-		Board findBoard = boardService.findBoardById(board.getId());
-		boardService.updateBoard(board, boardForm);
+		boardService.updateBoard(board.getId(), boardForm);
 
 		//then
 		Board updateBoard = boardService.findBoardById(board.getId());
