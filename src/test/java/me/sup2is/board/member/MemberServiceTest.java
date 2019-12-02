@@ -79,7 +79,7 @@ public class MemberServiceTest {
         memberService.save(member);
 
         //when
-        memberService.deleteMember(member);
+        memberService.deleteMember(member.getId());
 
         //then
         assertEquals(null, memberService.findMemberById(member.getId()));

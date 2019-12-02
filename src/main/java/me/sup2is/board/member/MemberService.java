@@ -35,8 +35,8 @@ public class MemberService {
                 memberForm.getZipcode());
     }
 
-    public void deleteMember(Member member) {
-        memberRepository.remove(member);
+    public void deleteMember(Long memberId) {
+        memberRepository.remove(findMemberById(memberId));
     }
 
 }
