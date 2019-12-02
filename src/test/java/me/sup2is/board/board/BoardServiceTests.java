@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -81,4 +82,32 @@ public class BoardServiceTests {
 		assertEquals(null, boardService.findBoardById(board.getId()));
 
 	}
+
+	@Test
+	public void 로그인한유저의_글확인() throws Exception {
+	    //given
+		Member member = Member.createMember("sup2is", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+		memberRepository.save(member);
+		Member another = Member.createMember("another", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+		memberRepository.save(another);
+		Board board1 = Board.createBoard(member,"글 저장입니다1" , "글 저장입니다@@@");
+		boardService.save(board1);
+		Board board2 = Board.createBoard(member,"글 저장입니다2" , "글 저장입니다@@@");
+		boardService.save(board2);
+		Board board3 = Board.createBoard(member,"글 저장입니다3" , "글 저장입니다@@@");
+		boardService.save(board3);
+		Board board4 = Board.createBoard(another,"글 저장입니다4" , "글 저장입니다@@@");
+		boardService.save(board4);
+		Board board5 = Board.createBoard(another,"글 저장입니다5" , "글 저장입니다@@@");
+		boardService.save(board5);
+
+	    //when
+		List<Board> allByMemberId = boardService.findAllByMemberId(member.getId());
+
+		//then
+		assertEquals(3, allByMemberId.size());
+	}
+
+
+
 }

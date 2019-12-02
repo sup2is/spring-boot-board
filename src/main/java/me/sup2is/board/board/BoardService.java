@@ -1,13 +1,12 @@
 package me.sup2is.board.board;
 
 import lombok.RequiredArgsConstructor;
-import me.sup2is.board.member.MemberRepository;
-import me.sup2is.board.model.Member;
+import me.sup2is.board.member.MemberService;
+import me.sup2is.board.model.Board;
 import org.springframework.stereotype.Service;
 
-import me.sup2is.board.model.Board;
-
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +14,7 @@ import javax.transaction.Transactional;
 public class BoardService {
 
 	final private BoardRepository boardRepository;
+	final private MemberService memberService;
 
 	public Long save(Board board) {
 		return boardRepository.save(board);
@@ -31,5 +31,9 @@ public class BoardService {
 
 	public void deleteBoard(Long boardId) {
 		boardRepository.remove(findBoardById(boardId));
+	}
+
+	public List<Board> findAllByMemberId(Long memberId) {
+		return boardRepository.findAllByMemberId(memberService.findMemberById(memberId));
 	}
 }

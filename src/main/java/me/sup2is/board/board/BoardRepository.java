@@ -1,12 +1,13 @@
 package me.sup2is.board.board;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import me.sup2is.board.model.Board;
+import me.sup2is.board.model.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -25,5 +26,11 @@ public class BoardRepository{
 
     public void remove(Board board) {
         em.remove(board);
+    }
+
+    public List<Board> findAllByMemberId(Member member) {
+        TypedQuery<Board> query = em.createQuery("select b from Board b where b.member = :member", Board.class);
+        return query.setParameter("member", member)
+                .getResultList();
     }
 }
