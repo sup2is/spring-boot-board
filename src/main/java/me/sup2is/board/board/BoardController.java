@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import me.sup2is.board.model.BoardForm;
-
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -30,7 +28,7 @@ public class BoardController {
 	@ResponseBody
 	public ResponseEntity<String> write(@RequestBody @Valid BoardForm boardForm) {
 		try {
-			boardService.write(boardForm.getBoardEntity());
+//			boardService.write(boardForm.getBoardEntity());
 			return new ResponseEntity<>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);

@@ -30,8 +30,7 @@ public class Board {
 	@Lob
 	private String contents;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "reply_id")
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private List<Reply> replyList = new ArrayList<>();
 
 	private LocalDateTime createdAt;
