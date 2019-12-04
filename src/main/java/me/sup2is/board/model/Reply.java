@@ -64,4 +64,8 @@ public class Reply {
         return measureLevel(reply.parentReply, level + 1);
     }
 
+    public boolean hasChild () {
+        return this.childReplies.size() > 0 ? true : false;
+    }
+
 }

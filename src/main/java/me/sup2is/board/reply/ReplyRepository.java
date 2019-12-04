@@ -20,4 +20,8 @@ public class ReplyRepository {
     public Reply findOne(Long replyId) {
         return em.find(Reply.class, replyId);
     }
+
+    public void remove(Reply findReply) {
+        em.remove(findReply);
+    }
 }

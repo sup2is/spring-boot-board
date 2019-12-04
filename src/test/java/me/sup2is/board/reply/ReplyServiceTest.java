@@ -1,6 +1,7 @@
 package me.sup2is.board.reply;
 
 import me.sup2is.board.board.BoardService;
+import me.sup2is.board.exception.ReplyHasChildException;
 import me.sup2is.board.member.MemberService;
 import me.sup2is.board.model.Board;
 import me.sup2is.board.model.Member;
@@ -75,8 +76,46 @@ public class ReplyServiceTest {
         Board findBoard = boardService.findBoardById(board.getId());
         assertEquals(3, findBoard.getReplyList().size());
 
+    }
+
+    @Test
+    public void 댓글삭제 () throws Exception, ReplyHasChildException {
+        //given
+        Member member = Member.createMember("sup2is", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+        memberService.save(member);
+        Board board = Board.createBoard(member,"글 저장입니다" , "글 저장입니다@@@");
+        boardService.save(board);
+        Reply reply = Reply.createReply(member, board, "첫댓 ..ㅜㅜ", null); //초기 레벨 1레벨의 경우
+        replyService.save(reply);
+
+        //when
+        replyService.deleteReply(reply.getId());
+
+        //then
+        assertNull(replyService.findByReplyId(reply.getId()));
+    }
+
+    @Test(expected = ReplyHasChildException.class)
+    public void 하위댓글이_있는_댓글_삭제 () throws Exception, ReplyHasChildException {
+        //given
+        Member member = Member.createMember("sup2is", "password", "sup2is", "dev.sup2is@gmail.com", "읭?");
+        memberService.save(member);
+        Board board = Board.createBoard(member,"글 저장입니다" , "글 저장입니다@@@");
+        boardService.save(board);
+        Reply reply = Reply.createReply(member, board, "첫댓 ..ㅜㅜ", null); //초기 레벨 1레벨의 경우
+        replyService.save(reply);
+        Reply childReply = Reply.createReply(member, board, "대댓...ㅜㅜ", reply);
+        replyService.save(childReply);
+
+        //when
+        replyService.deleteReply(reply.getId());
+
+        //then
+        fail();
 
     }
+
+
 
 
 }
