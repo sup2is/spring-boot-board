@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <nav th:fragment="layout-nav" class="container">
-	<div class="p-1 float-right mb-3">
-		<a th:href="@{/board/write}" role="button" class="btn btn-secondary">Write</a>
+	<div style="height: 50px">
+		<div class="p-1 float-right mb-3">
+			<a th:href="@{/board/write}" role="button" class="btn btn-secondary">Write</a>
+			<a th:href="@{/member/create}" role="button" class="btn btn-secondary">Join</a>
+		</div>
 	</div>
 </nav>
 </html>
