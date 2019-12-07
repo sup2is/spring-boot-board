@@ -5,6 +5,7 @@ import me.sup2is.board.model.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -28,5 +29,11 @@ public class MemberRepository {
 
     public void remove(Member member) {
         em.remove(member);
+    }
+
+    public List<Member> findByUserId(String userId) {
+        TypedQuery<Member> query = em.createQuery("select m from Member m where m.userId = :userId", Member.class);
+        return  query.setParameter("userId", userId)
+                .getResultList();
     }
 }

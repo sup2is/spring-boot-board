@@ -1,5 +1,6 @@
 package me.sup2is.board.member;
 
+import javassist.bytecode.DuplicateMemberException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,7 @@ public class MemberController {
     }
 
     @PostMapping("/member/create")
-    public String createMember(@ModelAttribute @Valid MemberForm memberForm, BindingResult bindingResult) {
+    public String createMember(@ModelAttribute @Valid MemberForm memberForm, BindingResult bindingResult) throws DuplicateMemberException {
         if(bindingResult.hasErrors()) {
             //todo 넘어온 field error 매핑해서 다시 /member/create 로 보내주는 코드 필요함
         }
